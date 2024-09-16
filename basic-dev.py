@@ -1,5 +1,7 @@
 # From https://huggingface.co/black-forest-labs/FLUX.1-dev
-# Changes by Rune Bloodstone
+# Changes by Rune Bloodstone\
+# This does not run on less than 8 GB of RAM. It produces an error.
+# The Flux-1.dev model is a Gated model on HuggingFace.
 
 import torch
 from diffusers import FluxPipeline
@@ -17,10 +19,6 @@ API_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-
 
 pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.bfloat16)
 pipe.enable_model_cpu_offload() # Save some VRAM.
-
-def query(payload):
-    response = requests.post(API_URL, headers=headers, json=payload)
-    return response.content
 
 prompt = "A black cat holding a BlackBerry Bold phone in its cute paws standing in front of a building with a corporate BlackBerry sign on it."
 
