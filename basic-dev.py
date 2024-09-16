@@ -6,10 +6,8 @@
 import torch
 from diffusers import FluxPipeline
 from datetime import datetime
-import requests
 
 image_name = "flux-dev.png"
-
 start_time = datetime.now()
 
 # Get an access token from your HuggingFace Settings page
@@ -23,7 +21,7 @@ pipe.enable_model_cpu_offload() # Save some VRAM.
 prompt = "A black cat holding a BlackBerry Bold phone in its cute paws standing in front of a building with a corporate BlackBerry sign on it."
 
 image = pipe(prompt, height=1024, width=1024, 
-            guidance_scale=3.5, num_inference_steps=4, max_sequence_length=256, 
+            guidance_scale=3.5, num_inference_steps=50, max_sequence_length=512, 
             generator=torch.Generator("cpu").manual_seed(0)).images[0]
 
 stop_time = datetime.now()
