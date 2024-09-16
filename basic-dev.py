@@ -10,11 +10,6 @@ from datetime import datetime
 image_name = "flux-dev.png"
 start_time = datetime.now()
 
-# Get an access token from your HuggingFace Settings page
-use_token = "hf_yourreadonlytokengoeshere"
-headers = {"Authorization": f"Bearer {use_token}"}
-API_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev"
-
 pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.bfloat16)
 pipe.enable_model_cpu_offload() # Save some VRAM.
 
